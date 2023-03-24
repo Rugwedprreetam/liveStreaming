@@ -15,6 +15,7 @@
   <script>
     const roomID = "<%- roomID%>";
     const appID = "<%- appID%>";
+    const userID = "<%- userID%>";
     const userName = "<%- userName%>";
     const kitToken = "<%-kitToken%>";
     console.log(roomID);
@@ -32,7 +33,7 @@
       appID,
       kitToken,
       roomID,
-      roomID,
+      userID,
       userName
     );
     const zp = ZegoUIKitPrebuilt.create(token);
