@@ -1,0 +1,62 @@
+<html>
+  <head>
+    <style>
+      #root {
+        width: 100vw;
+        height: 100vh;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="root"></div>
+  </body>
+  <script src="https://unpkg.com/@zegocloud/zego-uikit-prebuilt/zego-uikit-prebuilt.js"></script>
+  <script>
+    const roomID = "<%- roomID%>";
+    const appID = "<%- appID%>";
+    const userName = "<%- userName%>";
+    const kitToken = "<%-kitToken%>";
+    console.log(roomID);
+    function getUrlParams(url) {
+      let urlStr = url.split("?")[1];
+      const urlSearchParams = new URLSearchParams(urlStr);
+      const result = Object.fromEntries(urlSearchParams.entries());
+      return result;
+    }
+
+    let role = getUrlParams(window.location.href)["role"] || "Host";
+    role =
+      role === "Host" ? ZegoUIKitPrebuilt.Host : ZegoUIKitPrebuilt.Audience;
+    const token = ZegoUIKitPrebuilt.generateKitTokenForProduction(
+      appID,
+      kitToken,
+      roomID,
+      roomID,
+      userName
+    );
+    const zp = ZegoUIKitPrebuilt.create(token);
+    zp.joinRoom({
+      container: document.querySelector("#root"),
+      scenario: {
+        mode: ZegoUIKitPrebuilt.LiveStreaming,
+        config: {
+          role,
+        },
+      },
+      sharedLinks: [
+        {
+          name: "Join as audience",
+          url:
+            window.location.protocol +
+            "//" +
+            window.location.host +
+            window.location.pathname +
+            "?roomID=" +
+            roomID +
+            "&role=Audience",
+        },
+      ],
+    });
+  </script>
+</html>

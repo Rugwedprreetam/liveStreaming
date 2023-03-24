@@ -1,0 +1,23 @@
+<html>
+
+<head>
+    <style>
+        #root {
+            width: 100vw;
+            height: 100vh;
+        }
+    </style>
+</head>
+
+
+<body>
+    <button id="start"> Start Stream</button>
+    <a href="stream">go to</a>
+</body> 
+<script>
+    const butt = document.getElementById("start");
+    butt.addEventListener("click",()=>{
+        fetch("/stream",{method:"GET"});
+    })
+</script>
+</html>
