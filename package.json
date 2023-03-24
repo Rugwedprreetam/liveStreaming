@@ -1,6 +1,15 @@
 {
+"name": "live_testing",
+"version": "1.0.0",
+"description": "",
+"main": "server.js",
+"scripts": {
+  "start": "node server.js",
+  "test": "echo \"Error: no test specified\" && exit 1"
+},
+"author": "",
+"license": "ISC",
   "dependencies": {
-    "@zegocloud/zego-uikit-prebuilt": "^1.7.4",
     "crypto": "^1.0.1",
     "ejs": "^3.1.9",
     "express": "^4.18.2"
